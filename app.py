@@ -29,21 +29,53 @@ app = Flask(__name__) # 首先我们从flask 包里面 导入 Flask 类，通过
 
 #修改视图函数
 #视图函数名称同样可以被调用
-from flask import url_for
+# from flask import url_for
+# @app.route('/')
+# def hello():
+#     return 'hello world'
+
+# @app.route('/user/<name>')
+# def user_page(name):
+#     return 'User: %s' % name
+
+# @app.route('/test')
+# def test_url_for():
+#     print(url_for('hello'))#调用视图函数 hello
+#     print(url_for('user_page',name='yuding'))#输出 user/yuding
+#     print(url_for('test_url_for'))# 输出：/test
+#     # 下面这个调用传入了多余的关键字参数，它们会被作为查询字符串附加到 URL后面。
+#     print(url_for('test_url_for',num=2)) #输出  /test?num=2
+
+#     return 'test_page'
+
+#第二课：jianjia2 准备虚拟数据
+name = 'Yuding Wang'
+
+movies = [
+
+{'title': 'My Neighbor Totoro', 'year': '1988'},
+
+{'title': 'Dead Poets Society', 'year': '1989'},
+
+{'title': 'A Perfect World', 'year': '1993'},
+
+{'title': 'Leon', 'year': '1994'},
+
+{'title': 'Mahjong', 'year': '1996'},
+
+{'title': 'Swallowtail Butterfly', 'year': '1996'},
+
+{'title': 'King of Comedy', 'year': '1999'},
+
+{'title': 'Devils on the Doorstep', 'year': '1999'},
+
+{'title': 'WALL-E', 'year': '2008'},
+
+{'title': 'The Pork of Music', 'year': '2012'},
+
+]
+from flask import render_template
 @app.route('/')
-def hello():
-    return 'hello world'
 
-@app.route('/user/<name>')
-def user_page(name):
-    return 'User: %s' % name
-
-@app.route('/test')
-def test_url_for():
-    print(url_for('hello'))#调用视图函数 hello
-    print(url_for('user_page',name='yuding'))#输出 user/yuding
-    print(url_for('test_url_for'))# 输出：/test
-    # 下面这个调用传入了多余的关键字参数，它们会被作为查询字符串附加到 URL后面。
-    print(url_for('test_url_for',num=2)) #输出  /test?num=2
-
-    return 'test_page'
+def index():
+    return render_template('index.html', name=name, movies=movies) 
